@@ -14,7 +14,7 @@ date: 2026-07-08
 This adds an optional raw color fallback:
 
 ```js
-backgroundColor: PlatformColor('?myThemeColor', 'rgba(255, 255, 0, 1)')
+backgroundColor: PlatformColor('?myThemeColor', {fallback:'rgba(255, 255, 0, 1)'})
 ```
 
 The whole trick is that the fallback is **lazy**. It crosses the bridge as a plain unparsed string and just sits on the color object. Native doesn't look at it, and doesn't parse it, until every name has failed to resolve. If the token resolves, the fallback never gets touched, so no costs are paid.
@@ -27,12 +27,12 @@ import {PlatformColor, StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   card: {
     // The iOS semantic color, or a plain near-white if the OS/app is too old.
-    backgroundColor: PlatformColor('secondarySystemBackground', '#f2f2f7'),
+    backgroundColor: PlatformColor('secondarySystemBackground', {fallback:'#f2f2f7'}),
   },
   progress: {
     // The Android theme attribute, or a concrete brand color if the token
     // isn't in the installed APK yet.
-    color: PlatformColor('?myBrandProgress', '#000000'),
+    color: PlatformColor('?myBrandProgress', {fallback:'#000000'}),
   },
 });
 ```
