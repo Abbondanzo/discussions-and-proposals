@@ -5,7 +5,7 @@ author:
 date: 2026-07-08
 ---
 
-# RFC0000: Raw color fallback for PlatformColor
+# RFC1008: Raw color fallback for PlatformColor
 
 ## Summary
 
